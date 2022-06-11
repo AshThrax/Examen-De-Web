@@ -6,8 +6,7 @@ namespace Api.Domain.Entities
     public class Film
     {
         public int? Id { get; set; }
-        [Required]
-        [StringLength(255)]
+        
         public string? Title { get; set; }
         public DateTime? Date { get; set; }
         public string? Genre { get; set; }

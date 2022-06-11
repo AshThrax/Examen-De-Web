@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Application.Films.Query.GetFilm
 {
-    public class GetFilmQuery : IRequest<IEnumerable<FilmDto>>
+    public class GetFilmQuery : IRequest<FilmVm>
     {
 
     }
-        public class GetFilmQueryHandler : IRequestHandler<GetFilmQuery, IEnumerable<FilmDto>>
+        public class GetFilmQueryHandler : IRequestHandler<GetFilmQuery, FilmVm>
         {
             private readonly IApplicationDbContext _context;
             private readonly IMapper _mapper;
@@ -21,11 +21,18 @@ namespace Application.Films.Query.GetFilm
                 _mapper = mapper;
             }
 
-            public async Task<IEnumerable<FilmDto>> Handle(GetFilmQuery request, CancellationToken cancellationToken)
+            public async Task<FilmVm> Handle(GetFilmQuery request, CancellationToken cancellationToken)
             {
 
-                IEnumerable<FilmDto> lst = await _context.Film.ProjectTo<FilmDto>(_mapper.ConfigurationProvider).OrderBy(t => t.Title).ToListAsync(cancellationToken);
-                return lst;
+                return new FilmVm
+                {
+                     Lists = await _context.Film
+                    .ProjectTo<FilmDto>(_mapper.ConfigurationProvider)
+                    .OrderBy(t => t.Title)
+                    .ToListAsync(cancellationToken)
+                };
+                
+                
             }
         }
     

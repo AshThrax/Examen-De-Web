@@ -14,10 +14,10 @@ namespace Api.Controllers
 
         [HttpGet]
         [Authorize(Roles ="Admin,Owner,User,guest")]
-        public async Task<ActionResult<IEnumerable<FilmDto>>> Get()
+        public async Task<ActionResult<FilmVm>> Get()
         {
-            var response = await Mediator.Send(new GetFilmQuery());
-            return View(response);
+
+            return await Mediator.Send(new GetFilmQuery()); 
         }
         //--------Create-----------------
 
@@ -25,18 +25,12 @@ namespace Api.Controllers
         [Authorize(Roles = "Admin,Owner,User")]
         public async Task<ActionResult<int>> Create([FromForm] CreateFilmCommand command)
         {
-            if (ModelState.IsValid)
-            {
-                var response = await Mediator.Send(command);
-                return RedirectToAction(nameof(Index), "Home");
-            }
-
-            return Ok(command);
+            return await Mediator.Send(command);
         }
         //--------update
-        [Route("Update")]
+        [HttpPut]
         [Authorize(Roles = "Admin,Owner")]
-        public async Task<IActionResult> Update([FromForm] string title, UpdateFilmCommand command)
+        public async Task<ActionResult> Update([FromForm] string title, UpdateFilmCommand command)
         {
             if (title != command.Title)
             {
@@ -46,9 +40,9 @@ namespace Api.Controllers
             return NoContent();
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         [Authorize(Roles = "Owner")]
-        public async Task<IActionResult> Delete(DeleteFilmCommand command)
+        public async Task<ActionResult> Delete(DeleteFilmCommand command)
         {
             try
             {

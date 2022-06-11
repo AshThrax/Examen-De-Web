@@ -6,9 +6,7 @@ namespace Api.Controllers
     [ApiController]
     public class ActeurController : ApiController
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+      //implementation
+
     }
 }

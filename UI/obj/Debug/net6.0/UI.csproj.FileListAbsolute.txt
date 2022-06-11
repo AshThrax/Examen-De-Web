@@ -75,3 +75,15 @@ C:\Users\quentin\source\repos\Film\UI\obj\Debug\net6.0\refint\UI.dll
 C:\Users\quentin\source\repos\Film\UI\obj\Debug\net6.0\UI.pdb
 C:\Users\quentin\source\repos\Film\UI\obj\Debug\net6.0\UI.genruntimeconfig.cache
 C:\Users\quentin\source\repos\Film\UI\obj\Debug\net6.0\ref\UI.dll
+C:\Users\quentin\source\repos\Film\Examen-De-Web\UI\obj\Debug\net6.0\UI.csproj.AssemblyReference.cache
+C:\Users\quentin\source\repos\Film\Examen-De-Web\UI\obj\Debug\net6.0\UI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\quentin\source\repos\Film\Examen-De-Web\UI\obj\Debug\net6.0\UI.AssemblyInfoInputs.cache
+C:\Users\quentin\source\repos\Film\Examen-De-Web\UI\obj\Debug\net6.0\UI.AssemblyInfo.cs
+C:\Users\quentin\source\repos\Film\Examen-De-Web\UI\obj\Debug\net6.0\UI.csproj.CoreCompileInputs.cache
+C:\Users\quentin\source\repos\Film\Examen-De-Web\UI\obj\Debug\net6.0\UI.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\quentin\source\repos\Film\Examen-De-Web\UI\obj\Debug\net6.0\UI.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\quentin\source\repos\Film\Examen-De-Web\UI\obj\Debug\net6.0\UI.RazorAssemblyInfo.cache
+C:\Users\quentin\source\repos\Film\Examen-De-Web\UI\obj\Debug\net6.0\UI.RazorAssemblyInfo.cs
+C:\Users\quentin\source\repos\Film\Examen-De-Web\UI\obj\Debug\net6.0\UI.dll
+C:\Users\quentin\source\repos\Film\Examen-De-Web\UI\obj\Debug\net6.0\refint\UI.dll
+C:\Users\quentin\source\repos\Film\Examen-De-Web\UI\obj\Debug\net6.0\UI.pdb

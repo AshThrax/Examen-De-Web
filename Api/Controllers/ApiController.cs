@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Api.Controllers
 {
    
-        public class ApiController : Controller
+        public class ApiController : ControllerBase
         {
             private IMediator _mediator;
 
