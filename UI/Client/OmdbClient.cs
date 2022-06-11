@@ -4,7 +4,7 @@ using System.Net.Http.Headers;
 using UI.Models;
 using WebApplication2.Models;
 
-namespace WebApplication2.Omdb_Client
+namespace Client.Omdb_Client
 {
 
     public interface IOmdbClient

@@ -171,11 +171,19 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Auth0.AuthenticationApi": {
+              "target": "Package",
+              "version": "[7.16.0, )"
+            },
             "Microsoft.AspNetCore.Authentication.Cookies": {
               "target": "Package",
               "version": "[2.2.0, )"
             },
             "Microsoft.AspNetCore.Authentication.OpenIdConnect": {
+              "target": "Package",
+              "version": "[6.0.5, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[6.0.5, )"
             },

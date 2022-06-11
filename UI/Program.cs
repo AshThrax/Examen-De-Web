@@ -1,4 +1,4 @@
-using Api;
+using Client.Omdb_Client;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
@@ -6,30 +6,32 @@ using Microsoft.IdentityModel.Tokens;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+
 ConfigurationManager configuration=builder.Configuration;
-var app = builder.Build();
+
+
 //authenticatepart
 builder.Services.AddAuthentication(options => {
     options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
     options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-})
-.AddCookie()
+}).AddCookie()
 .AddOpenIdConnect("Auth0", options =>
 {
     options.Authority = $"https://{configuration["Auth0:Domain"]}";
-    options.ClientId = configuration["Auth0:ClientID"];
+    options.ClientId = configuration["Auth0:ClientId"];
     options.ClientSecret = configuration["Auth0:ClientSecret"];
     options.ResponseType = OpenIdConnectResponseType.Code;
     options.Scope.Clear();
     options.Scope.Add("openid");
     options.Scope.Add("profile");
     options.Scope.Add("email");
+   
     options.TokenValidationParameters = new TokenValidationParameters
     {
         NameClaimType = "name"
     };
+    
     options.CallbackPath = new PathString("/callback");
     options.ClaimsIssuer = "Auth0";
 
@@ -39,7 +41,7 @@ builder.Services.AddAuthentication(options => {
     {
         OnRedirectToIdentityProviderForSignOut = (context) =>
         {
-            var logoutUri = $"https://{configuration["Auth0:Domain"]}/v2/logout?client_id={configuration["Auth0:ClientID"]}";
+            var logoutUri = $"https://{configuration["Auth0:Domain"]}/v2/logout?client_id={configuration["Auth0:ClientId"]}";
             var postLogoutUri = context.Properties.RedirectUri;
             if (!string.IsNullOrEmpty(postLogoutUri))
             {
@@ -56,6 +58,10 @@ builder.Services.AddAuthentication(options => {
         }
     };
 });
+builder.Services.AddHttpClient<IOmdbClient, OmdbClient>();
+builder.Services.AddControllersWithViews();
+
+var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
