@@ -3,23 +3,23 @@
 
 // Write your JavaScript code.
 
-var api ="https://www.googleapis.com/youtube/v3/search?key="
+
 $(document).ready(function ()
 {
-
-    var key = "AIzaSyBQn4jTntWHt5QeZJ4xBORFQkKg9jJorBA"
+    var api ="https://www.googleapis.com/youtube/v3/search?key="
+    var apikey = "AIzaSyBQn4jTntWHt5QeZJ4xBORFQkKg9jJorBA"
     var Video = ""
     var Videos=$("#videos")
     $("form").submit(function (event)
     {
         event.preventDefault()
         var search=$("#search").val()
-        videoSearch(key,search,10)
+        videoSearch(apikey,search,10)
     }
         )
 
     function videosearch(key, search, maxresult) {
-        $.get("https://www.googleapis.com/youtube/v3/search?key="key + "&type=video&part=snippet&maxResult=" + maxresult + "&q" + search, function (data)
+        $.get("https://www.googleapis.com/youtube/v3/search?key="key+ &type=video&part=snippet&maxResult=" + maxresult + "&q" + search, function (data)
         {
             console.log(data)
             data.items.forEach( item => {
