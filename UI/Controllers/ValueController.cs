@@ -25,6 +25,8 @@ namespace UI.Controllers
             var response = await Client.GetAsync("https://localhost:7299/api/Film");
             response.EnsureSuccessStatusCode();
             var result = await response.Content.ReadAsStringAsync();
+            
+           
             return View(result);
         }
         public async Task<IActionResult> Create(Film film)

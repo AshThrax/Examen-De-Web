@@ -12,7 +12,11 @@ html {
   position: relative;
   min-height: 100%;
 }
-
+#contour {
+    border: 2px solid black;
+    padding: 10px;
+    border-radius: 30px 25px;
+}
 body {
   margin-bottom: 60px;
 }
