@@ -9,7 +9,7 @@ namespace Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class FilmController1 : ApiController
+    public class FilmController : ApiController
     {
 
         [HttpGet]

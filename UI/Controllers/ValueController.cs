@@ -13,7 +13,8 @@ namespace UI.Controllers
 
         public async Task<IActionResult> GetAllValues()
         {
-            var response = await Client.GetAsync("http://localhost:13826/api/values");
+            //envoie de ma requeste a mon api 
+            var response = await Client.GetAsync("https://localhost:7299/api/Film");
             response.EnsureSuccessStatusCode();
             var result = await response.Content.ReadAsStringAsync();
             return View(result);
