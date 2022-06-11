@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
 namespace UI.Controllers
@@ -55,5 +56,22 @@ namespace UI.Controllers
             return View(nameof(Index));
         }
 
+        private async Task SetupAuthorizationHeader()
+        {
+            //si mon refresh token est null je dois en demander un nouveau
+            if (string.IsNullOrEmpty(refreshToken))
+            {
+                refreshToken = await HttpContext.GetTokenAsync("refreshtoken");
+            }
+            //si mon access token est null je dopis en demander un nouveau
+            if (string.IsNullOrEmpty(accessToken))
+            { 
+                accessToken= await HttpContext.GetTokenAsync("refreshtoken");
+            }
+            if (Client.DefaultRequestHeaders.Authorization == null)
+            { 
+                Client.DefaultRequestHeaders.Authorization= new System.Net.Http.Headers.AuthenticationHeaderValue ("Bearer",accessToken);
+            }
+        }
     }
 }
