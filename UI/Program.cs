@@ -7,40 +7,39 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-var configuration=builder.Configuration;
-builder.Services.AddDependence(configuration);
+ConfigurationManager configuration=builder.Configuration;
 var app = builder.Build();
 //authenticatepart
-builder.Services.AddAuthentication(option => {
-    option.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-    option.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-    option.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+builder.Services.AddAuthentication(options => {
+    options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
 })
 .AddCookie()
-.AddOpenIdConnect("Auth0", option =>
+.AddOpenIdConnect("Auth0", options =>
 {
-    option.Authority = $"https://{configuration["Auth0:Domain"]}";
-    option.ClientId = configuration["Auth0:ClientId"];
-    option.ClientSecret = configuration["Auth0:ClientSecret"];
-    option.ResponseType = OpenIdConnectResponseType.Code;
-    option.Scope.Clear();
-    option.Scope.Add("openid");
-    option.Scope.Add("profile");
-    option.Scope.Add("email");
-    option.TokenValidationParameters = new TokenValidationParameters
+    options.Authority = $"https://{configuration["Auth0:Domain"]}";
+    options.ClientId = configuration["Auth0:ClientID"];
+    options.ClientSecret = configuration["Auth0:ClientSecret"];
+    options.ResponseType = OpenIdConnectResponseType.Code;
+    options.Scope.Clear();
+    options.Scope.Add("openid");
+    options.Scope.Add("profile");
+    options.Scope.Add("email");
+    options.TokenValidationParameters = new TokenValidationParameters
     {
         NameClaimType = "name"
     };
-    option.CallbackPath = new PathString("/callback");
-    option.ClaimsIssuer = "Auth0";
+    options.CallbackPath = new PathString("/callback");
+    options.ClaimsIssuer = "Auth0";
 
-    option.SaveTokens = true;
+    options.SaveTokens = true;
 
-    option.Events = new Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectEvents
+    options.Events = new Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectEvents
     {
         OnRedirectToIdentityProviderForSignOut = (context) =>
         {
-            var logoutUri = $"https://{configuration["Auth0:Domain"]}/v2/logout?client_id={configuration["Auth0:ClientId"]}";
+            var logoutUri = $"https://{configuration["Auth0:Domain"]}/v2/logout?client_id={configuration["Auth0:ClientID"]}";
             var postLogoutUri = context.Properties.RedirectUri;
             if (!string.IsNullOrEmpty(postLogoutUri))
             {
@@ -66,10 +65,11 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCookiePolicy();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

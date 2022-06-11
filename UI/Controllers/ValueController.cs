@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Text;
+using UI.Models;
 
 namespace UI.Controllers
 {
@@ -9,7 +11,13 @@ namespace UI.Controllers
 
         private static string accessToken;
         private static string refreshToken;
+     
         private static HttpClient Client = new HttpClient();
+
+        public ValueController(HttpClient client)
+        { 
+            Client = client;
+        }
 
         public async Task<IActionResult> GetAllValues()
         {
@@ -19,42 +27,36 @@ namespace UI.Controllers
             var result = await response.Content.ReadAsStringAsync();
             return View(result);
         }
-        public async Task<IActionResult> Create()
+        public async Task<IActionResult> Create(Film film)
         {
             await SetupAuthorizationHeader();
-
-            var response = await Client.PostAsync(
-                "http://localhost:13826/api/values",
-                 new StringContent(JsonConvert.SerializeObject(GetSamplePayload()),
-                 Encoding.UTF8,
-                 "application/json")
-            );
+            string modify=JsonConvert.SerializeObject(film);
+            var data = new StringContent(modify, Encoding.UTF8, "application/json");
+            var response = await Client.PostAsync("https://localhost:7299/api/Film",data);
 
             response.EnsureSuccessStatusCode();
 
             return View(nameof(Index));
         }
-        public async Task<IActionResult> Update()
+        public async Task<IActionResult> Update(Film film)
         {
             await SetupAuthorizationHeader();
-            var response = await Client.PutAsync(
-                "http://localhost:13826/api/values",
-                new StringContent(JsonConvert.SerializeObject(GetSamplePayload()),
-                Encoding.UTF8,
-                "application/json"));
+            string modify = JsonConvert.SerializeObject(film);
+            var data = new StringContent(modify, Encoding.UTF8, "application/json");
+            var response = await Client.PutAsync("https://localhost:7299/api/Film",data); ;
 
             response.EnsureSuccessStatusCode();
 
             return View(nameof(Index));
         }
 
-        public async Task<IActionResult> Delete()
+        public async Task<IActionResult> Delete(int id)
         {
             await SetupAuthorizationHeader();
-            var response = await Client.DeleteAsync("http://localhost:13826/api/values/1");
+            var response = await Client.DeleteAsync("https://localhost:7299/api/Film"+id);
             response.EnsureSuccessStatusCode();
 
-            return View(nameof(Index));
+            return View(nameof(Index),"Home");
         }
 
         private async Task SetupAuthorizationHeader()
