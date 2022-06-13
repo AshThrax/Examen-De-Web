@@ -1,8 +1,7 @@
-﻿using Blog_implementation.Models;
-using Blog_implementation.Models.ForumModel;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using UI.Models.ForumModel;
 
-namespace Blog_implementation.Service
+namespace UI.Services
 {
     public class ForumContext : DbContext,IForumContext
     {

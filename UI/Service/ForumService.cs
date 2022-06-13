@@ -1,6 +1,6 @@
-﻿using Blog_implementation.Models;
+﻿using UI.Models.ForumModel;
 
-namespace Blog_implementation.Service
+namespace UI.Services
 {
     public class ForumService : IForumService
     {

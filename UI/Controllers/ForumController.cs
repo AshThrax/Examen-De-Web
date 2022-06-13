@@ -1,6 +1,6 @@
-﻿using Blog_implementation.Models.ForumModel;
-using Blog_implementation.Service;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using UI.Models.ForumModel;
+using UI.Services;
 
 namespace UI.Controllers
 {

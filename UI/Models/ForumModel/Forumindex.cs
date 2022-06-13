@@ -1,7 +1,5 @@
-﻿using Blog_implementation.Models;
-
-namespace Blog_implementation.Models.ForumModel 
-{ 
+﻿namespace UI.Models.ForumModel
+{
     public class Forumindex
     {
     public IEnumerable<ForumsList> Forumlisting { get; set; }

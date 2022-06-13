@@ -2,6 +2,7 @@ using Client.Omdb_Client;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
+using UI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -59,6 +60,7 @@ builder.Services.AddAuthentication(options => {
     };
 });
 builder.Services.AddHttpClient<IOmdbClient, OmdbClient>();
+builder.Services.AddScoped<IForumService, ForumService>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
