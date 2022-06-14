@@ -3587,6 +3587,20 @@
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
         ]
+      },
+      "ForumBackend/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Abstractions": "6.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0"
+        },
+        "compile": {
+          "bin/placeholder/ForumBackend.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ForumBackend.dll": {}
+        }
       }
     }
   },
@@ -10663,12 +10677,18 @@
       "type": "project",
       "path": "../Api/Api.csproj",
       "msbuildProject": "../Api/Api.csproj"
+    },
+    "ForumBackend/1.0.0": {
+      "type": "project",
+      "path": "../ForumBackend/ForumBackend.csproj",
+      "msbuildProject": "../ForumBackend/ForumBackend.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
       "Api >= 1.0.0",
       "Auth0.AuthenticationApi >= 7.16.0",
+      "ForumBackend >= 1.0.0",
       "Microsoft.AspNetCore.Authentication.Cookies >= 2.2.0",
       "Microsoft.AspNetCore.Authentication.OpenIdConnect >= 6.0.5",
       "Microsoft.EntityFrameworkCore.Design >= 6.0.5",
@@ -10714,6 +10734,9 @@
           "projectReferences": {
             "C:\\Users\\quentin\\source\\repos\\Film\\Examen-De-Web\\Api\\Api.csproj": {
               "projectPath": "C:\\Users\\quentin\\source\\repos\\Film\\Examen-De-Web\\Api\\Api.csproj"
+            },
+            "C:\\Users\\quentin\\source\\repos\\Film\\Examen-De-Web\\ForumBackend\\ForumBackend.csproj": {
+              "projectPath": "C:\\Users\\quentin\\source\\repos\\Film\\Examen-De-Web\\ForumBackend\\ForumBackend.csproj"
             }
           }
         }

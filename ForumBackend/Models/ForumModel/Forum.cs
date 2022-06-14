@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace UI.Models.ForumModel
+namespace Blog_implementation.Models.ForumModel
 {
     public class Forum
     {

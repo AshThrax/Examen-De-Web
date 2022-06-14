@@ -1,4 +1,6 @@
-﻿namespace UI.Models.ForumModel
+﻿using Blog_implementation.Models.ForumModel;
+
+namespace Blog_implementation.Models.PostModels
 {
     public class Post
     {
