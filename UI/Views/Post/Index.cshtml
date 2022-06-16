@@ -1,0 +1,33 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model UI.Models.Post.PostIndex
+
+<h1>@Model.Title</h1>
+<div>
+    Author:@Model.UserName
+    created:@Model.Created
+</div>
+<div>
+    @Model.PostContent
+</div>
+
+if(@Model.Replies.Any())
+{
+    @foreach (var item in Model.Replies)
+    {
+        <div>
+            <div>
+                reply user: @item.UserName
+                reply Created:@item.Created
+
+            </div>
+            <div>
+                Reply:@item.ReplyContent
+            </div>
+        </div>
+        
+    }
+}

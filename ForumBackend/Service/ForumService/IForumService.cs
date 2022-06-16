@@ -6,7 +6,7 @@ namespace Blog_implementation.Service.ForumService
     {
         Forum GetbyId(int id);
 
-        Task<IEnumerable<Forum>> GetAllPost();
+        IEnumerable<Forum> GetAllPost();
         Task<Forum> GetPost(int id);
         void Create(Forum post);
         void DeletePost(int id);

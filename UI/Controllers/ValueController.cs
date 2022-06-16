@@ -29,7 +29,7 @@ namespace UI.Controllers
            
             return View(result);
         }
-        public async Task<IActionResult> Create(Film film)
+        public async Task<IActionResult> Create(FilmViewModel film)
         {
             await SetupAuthorizationHeader();
             string modify=JsonConvert.SerializeObject(film);
@@ -40,7 +40,7 @@ namespace UI.Controllers
 
             return View(nameof(Index));
         }
-        public async Task<IActionResult> Update(Film film)
+        public async Task<IActionResult> Update(FilmViewModel film)
         {
             await SetupAuthorizationHeader();
             string modify = JsonConvert.SerializeObject(film);

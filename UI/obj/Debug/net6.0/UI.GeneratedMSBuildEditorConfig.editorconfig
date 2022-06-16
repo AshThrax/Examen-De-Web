@@ -15,6 +15,14 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\quentin\source\repos\Film\Examen-De-Web\UI
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/quentin/source/repos/Film/Examen-De-Web/UI/Views/Forum/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ydW1cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/quentin/source/repos/Film/Examen-De-Web/UI/Views/Forum/Topic.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ydW1cVG9waWMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/quentin/source/repos/Film/Examen-De-Web/UI/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -25,6 +33,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/quentin/source/repos/Film/Examen-De-Web/UI/Views/Home/SearchFilm.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTZWFyY2hGaWxtLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/quentin/source/repos/Film/Examen-De-Web/UI/Views/Post/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/quentin/source/repos/Film/Examen-De-Web/UI/Views/Shared/Error.cshtml]

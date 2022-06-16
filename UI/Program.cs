@@ -1,15 +1,17 @@
 using Client.Omdb_Client;
+using ForumBackend;
+using ForumBackend.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
-using UI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 ConfigurationManager configuration=builder.Configuration;
-
+builder.Services.AddFroumDependence(configuration);
 
 //authenticatepart
 builder.Services.AddAuthentication(options => {
@@ -59,8 +61,9 @@ builder.Services.AddAuthentication(options => {
         }
     };
 });
-builder.Services.AddHttpClient<IOmdbClient, OmdbClient>();
-builder.Services.AddScoped<IForumService, ForumService>();
+builder.Services.AddDbContext<ForumContext>(options =>
+           options.UseSqlServer());
+builder.Services.AddHttpClient<IOmdbClient,OmdbClient>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
@@ -83,5 +86,4 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-
 app.Run();

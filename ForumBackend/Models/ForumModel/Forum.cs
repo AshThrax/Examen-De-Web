@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Blog_implementation.Models.PostModels;
+using System;
 
 namespace Blog_implementation.Models.ForumModel
 {
@@ -10,6 +11,6 @@ namespace Blog_implementation.Models.ForumModel
         public DateTime Created { get; set; }
         public string Urlimage { get; set; }
 
-        public IEnumerable<Post> Posts { get; set; }
+        public IEnumerable<Post> Post { get; set; }
     }
 }

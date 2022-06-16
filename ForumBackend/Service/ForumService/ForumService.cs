@@ -27,15 +27,19 @@ namespace Blog_implementation.Service.ForumService
         public IEnumerable<Forum> GetAllPost()
         {
             return _forumContext.Forum
-                .Include(Forum => Forum.Posts);
+                .Include(Forum => Forum.Post);
         }
 
         public Forum GetbyId(int id)
         {
             return _forumContext.Forum
                 .Where(x => x.Id == id)
-                .Include(f => f.Posts)
-                .ThenInclude(p => p.User);
+                    .Include(f => f.Post)
+                        .ThenInclude(p => p.User)
+                    .Include(p =>p.Post)
+                        .ThenInclude(x =>x.Replies)
+                            .ThenInclude(r =>r.User)
+                .First();
         }
 
         public Task<Forum> GetPost(int id)

@@ -1,6 +1,7 @@
 ﻿using Blog_implementation.Models.ForumModel;
+using Ui.Models.ForumModel;
 
-namespace Blog_implementation.Models.PostModels
+namespace UI.Models.Post
 {
     public class PostList
     {

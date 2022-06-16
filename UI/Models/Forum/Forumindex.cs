@@ -1,6 +1,7 @@
 ﻿using Blog_implementation.Models;
+using Ui.Models.ForumModel;
 
-namespace Blog_implementation.Models.ForumModel 
+namespace UI.Models.ForumModel
 { 
     public class Forumindex
     {

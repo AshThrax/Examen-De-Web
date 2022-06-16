@@ -10,9 +10,9 @@ namespace Blog_implementation.Models.PostModels
         public DateTime Created { get; set; }
 
         public User User { get; set; }
-        public int Userid { get; set; }
+        public string Userid { get; set; }
 
         public virtual Forum ForumLink { get; set; }
-        public virtual ICollection<PostReplies> Replies { get; set; }
+        public virtual IEnumerable<PostReplies> Replies { get; set; }
     }
 }

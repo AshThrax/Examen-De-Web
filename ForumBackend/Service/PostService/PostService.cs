@@ -1,5 +1,6 @@
 ﻿using Blog_implementation.Models.PostModels;
 using ForumBackend.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Blog_implementation.Service.PostService
 {
@@ -34,7 +35,14 @@ namespace Blog_implementation.Service.PostService
 
         public Post GetbyId(int id)
         {
-            throw new NotImplementedException();
+            return _forumContext.Posts
+                .Where(post => post.Id == id)
+                .Include(post =>post.User)
+                .Include(post =>post.Replies).ThenInclude(reply =>reply.User)
+                .Include(post =>post.Title)
+                .Include(post =>post.Content)
+                .Include(post =>post.ForumLink)
+                .Include(post => post.Created).First();
         }
 
         public IEnumerable<Post> GetPostbyForum(int id)

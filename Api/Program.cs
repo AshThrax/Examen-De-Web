@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Filters;
 using Microsoft.AspNetCore.Mvc;
+using Api.Policies;
 using Api;
 using FluentValidation.AspNetCore;
 
@@ -17,6 +18,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDependence(configuration);
+
+
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -25,10 +28,14 @@ builder.Services.AddAuthentication(options =>
 {
     options.Authority = domain;
     options.Audience = configuration["Auth0:ApiIdentifier"];
-    options.TokenValidationParameters = new TokenValidationParameters
-    {
-        RoleClaimType = "http://schemas.microsoft.com/ws/2008/06/identity/claims/roles"
-    };
+   
+});
+builder.Services.AddAuthorization(options => 
+{
+    options.AddPolicy(AddPolicies.Admin, policy => policy.RequireClaim("https://film.com/roles","Admin"));
+    options.AddPolicy(AddPolicies.Moderateur, policy => policy.RequireClaim("https://film.com/roles", "Moderator")); 
+    options.AddPolicy(AddPolicies.User, policy => policy.RequireClaim("https://film.com/roles", "User"));
+    options.AddPolicy(AddPolicies.Guest, policy => policy.RequireClaim("https://film.com/roles", "Guest"));
 });
 
 builder.Services.AddMvc(options => 

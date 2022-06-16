@@ -2,7 +2,7 @@
 
 namespace UI.Models
 {
-    public class Film
+    public class FilmViewModel
     {
         public int? Id { get; set; }
 
