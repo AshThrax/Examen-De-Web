@@ -2,7 +2,7 @@
 
 namespace UI.Models
 {
-    public class Acteur
+    public class ActeurViewModel
     {
         public int id { get; set; }
         public string? name { get; set; }

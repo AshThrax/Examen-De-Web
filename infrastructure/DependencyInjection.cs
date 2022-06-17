@@ -1,5 +1,6 @@
-﻿using Application.Common.Interfaces;
-using infrastructure.Service;
+﻿using Api.Infrastructure.Persistence;
+using Application.Common.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -9,9 +10,20 @@ namespace infrastructure
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services ,IConfiguration configuration)
         {
+            if (configuration.GetValue<bool>("UseInMemoryDatabase"))
+            {
+                services.AddDbContext<ApplicationDbContext>(options =>
+                   options.UseInMemoryDatabase("CleanArchitectureExamen")); ;
+            }
+            else
+            {
+                services.AddDbContext<ApplicationDbContext>(options =>
+                    options.UseSqlServer(
+                        configuration.GetConnectionString("DefaultConnection"),
+                            b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
+            }
 
-            services.AddScoped<IFilmService, FilmService>();
-            services.AddScoped<IActeurService, ActeurService>();
+            services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
             return services;
         }
     }

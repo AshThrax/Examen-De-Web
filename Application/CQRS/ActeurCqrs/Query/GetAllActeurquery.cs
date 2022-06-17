@@ -1,6 +1,9 @@
 ﻿using Application.Common.Interfaces;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using Domain.Entities;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace Film_api.CQRS.ActeurCqrs.Query
 {
@@ -18,7 +21,10 @@ namespace Film_api.CQRS.ActeurCqrs.Query
 
             public async Task<IEnumerable<ActeurDto>> Handle(GetAllActeurQuery query, CancellationToken cancellationToken)
             {
-                return await _serviceActeur.GetAllActeur();
+                List<ActeurDto> act =await _context.Acteurs
+                                                    .ProjectTo<ActeurDto>(_mapper.ConfigurationProvider)
+                                                    .ToListAsync();
+                return act;
             }
         }
     }

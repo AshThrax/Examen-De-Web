@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Film_api.CQRS.FilmCqrs.Command
 {
-    public class DeleteFilmCommand:IRequest<int>
+    public class DeleteFilmCommand:IRequest
     {
         public int Id { get; set; }
         public string Titre { get; set; }
@@ -15,7 +15,7 @@ namespace Film_api.CQRS.FilmCqrs.Command
 
         public Film film { get; set; }
 
-        public class DeleteFilmCommandHandler : IRequestHandler<DeleteFilmCommand, int>
+        public class DeleteFilmCommandHandler : IRequestHandler<DeleteFilmCommand>
         {
             private readonly IApplicationDbContext _context;
             public DeleteFilmCommandHandler(IApplicationDbContext context)
@@ -23,14 +23,15 @@ namespace Film_api.CQRS.FilmCqrs.Command
                 _context = context;
             }
 
-            public async Task<int> Handle(DeleteFilmCommand Command, CancellationToken cancellationToken)
+            public async Task<Unit> Handle(DeleteFilmCommand Command, CancellationToken cancellationToken)
             {
-                var entity = await _context.Films.Where(x => x.Id==Command.Id).First();
+                var entity = await _context.Films.Where(x => x.Id==Command.Id).FirstaAsync();
                 if (entity == null)
                     return default;
 
                 _context.Films.Remove(entity);
-                return await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync(cancellationToken);
+                return Unit.Value;
             }
         }
     }

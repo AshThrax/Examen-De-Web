@@ -1,6 +1,4 @@
-﻿using Film_api.Service;
-using Film_api.Model;
-using MediatR;
+﻿using MediatR;
 using Domain.Entities;
 using Application.Common.Interfaces;
 
@@ -31,7 +29,7 @@ namespace Film_api.CQRS.FilmCqrs.Command
                 };
 
                 _context.Films.Add(entity);
-                await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync(cancellationToken);
                 return entity;
 
             }

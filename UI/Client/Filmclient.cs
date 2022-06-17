@@ -8,12 +8,12 @@ namespace UI.Client
     {
         Task<IEnumerable<FilmViewModel>> GetallAsync();
         Task<FilmViewModel> GetAsync(int id);
-        void PostAsync (FilmViewModel model);
-        void PutAsync (FilmViewModel model, int id);
+        Task<FilmViewModel> PostAsync (FilmViewModel model);
+        Task<FilmViewModel> PutAsync (FilmViewModel model, int id);
         void DeleteAsync (int id);
 
     }
-    public class Filmclient : IFilmClient
+    public class Filmclient :  IFilmClient
     {
         private readonly HttpClient Client;
 

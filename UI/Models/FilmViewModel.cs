@@ -1,6 +1,4 @@
-﻿using Api.Domain.Entities;
-
-namespace UI.Models
+﻿namespace UI.Models
 {
     public class FilmViewModel
     {
@@ -13,6 +11,6 @@ namespace UI.Models
         public string? Producer { get; set; }
         public string? Description { get; set; }
 
-        public ICollection<Acteur>? Acteurs { get; set; }
+        public ICollection<ActeurViewModel>? Acteurs { get; set; }
     }
 }

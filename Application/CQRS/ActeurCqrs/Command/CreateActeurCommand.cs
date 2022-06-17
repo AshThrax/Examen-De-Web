@@ -1,13 +1,6 @@
 ﻿using Application.Common.Interfaces;
 using Domain.Entities;
-using Film_api.Model;
-using Film_api.Service;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Film_api.CQRS.ActeurCqrs.Command
 {
@@ -37,7 +30,9 @@ namespace Film_api.CQRS.ActeurCqrs.Command
                    Film = command.film,
                 };
 
-                return await _serviceActeur.CreateActeur(entity);
+                _context.Acteurs.Add(entity);
+                await _context.SaveChangesAsync(cancellationToken);
+                return entity;
             }
         }
     }

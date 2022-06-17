@@ -1,12 +1,7 @@
-﻿using AutoMapper;
+﻿using Application.Common.Mapping;
+using AutoMapper;
+using Domain.Entities;
 using Film_api.CQRS.ActeurCqrs;
-using Film_api.Mapping;
-using Film_api.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Film_api.CQRS.FilmCqrs
 {

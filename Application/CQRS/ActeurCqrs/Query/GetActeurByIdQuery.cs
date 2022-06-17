@@ -1,12 +1,8 @@
 ﻿using Application.Common.Interfaces;
-using Film_api.Model;
-using Film_api.Service;
+using AutoMapper;
+using Domain.Entities;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Film_api.CQRS.ActeurCqrs.Query
 {
@@ -15,17 +11,20 @@ namespace Film_api.CQRS.ActeurCqrs.Query
         public int Id { get; set; }
         public class GetActeurByIdQueryHandler : IRequestHandler<GetActeurByIdQuery, Acteur>
         {
-            private readonly IApplicationDbContext context;
-            public GetActeurByIdQueryHandler( IServiceActeur serviceActeur)
+            private readonly IApplicationDbContext _context;
+            private readonly IMapper _mapper ;
+            public GetActeurByIdQueryHandler(IApplicationDbContext context,IMapper mapper)
             { 
-                _serviceActeur = serviceActeur;
+                _context = context;
+                _mapper = mapper;
                 
             }
 
             public async Task<Acteur> Handle(GetActeurByIdQuery query,CancellationToken cancellationToken)
             {
-                return await _serviceActeur.GetActeurById(query.Id);
+                return await _context.Acteurs.FirstOrDefaultAsync(x => x.Id == query.Id);
             }
+        }
         }
     }
 }

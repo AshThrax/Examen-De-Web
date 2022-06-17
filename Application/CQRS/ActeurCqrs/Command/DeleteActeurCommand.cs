@@ -1,38 +1,43 @@
-﻿using Film_api.Model;
-using Film_api.Service;
+﻿using Application.Common.Exceptions;
+using Application.Common.Interfaces;
+using Domain.Entities;
 using MediatR;
-using System;
-using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Film_api.CQRS.ActeurCqrs.Command
 {
-    public  class DeleteActeurCommand : IRequest<int>
+    public  class DeleteActeurCommand : IRequest
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public string Roles { get; set; }
 
         public Film film { get; set; }
-        public class DeleteActeurCommandHandler : IRequestHandler<DeleteActeurCommand, int>
+        public class DeleteActeurCommandHandler : IRequestHandler<DeleteActeurCommand>
         {
-            private readonly IApplicationDbContext context;
-            private int defautl;
+            private readonly IApplicationDbContext _context;
+      
 
-            public DeleteActeurCommandHandler(IServiceActeur serviceActeur)
+            public DeleteActeurCommandHandler(IApplicationDbContext context)
             {
-                _serviceActeur = serviceActeur;
+              _context= context;
             }
 
-            public async Task<int> Handle(DeleteActeurCommand Command, CancellationToken cancellationToken)
+            public async Task<Unit> Handle(DeleteActeurCommand Command, CancellationToken cancellationToken)
             { 
-                var entity=await _serviceActeur.GetActeurById(Command.Id);
-                if (entity == null)
-                    return default;
+                var entity= await _context.Acteurs
+                    .Where(x =>x.Id==Command.Id)
+                    .SingleOrDefaultAsync(cancellationToken);
+                if (entity == null) 
+                { 
+                    throw new NotFoundException(nameof(Acteur),Command.Id);
+                }
+                   
 
-                return await _serviceActeur.DeleteActeur(entity);
+                _context.Acteurs.Remove(entity);
+                 await _context.SaveChangesAsync(cancellationToken);
+                return Unit.Value;
             }
         }
     }

@@ -1,11 +1,6 @@
-﻿using Film_api.Model;
-using Film_api.Service;
+﻿using Application.Common.Interfaces;
+using Domain.Entities;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Film_api.CQRS.ActeurCqrs.Command
 {
@@ -18,22 +13,23 @@ namespace Film_api.CQRS.ActeurCqrs.Command
         public Film film { get; set; }
         public class UpdateActeurCommandHandler : IRequestHandler<UpdateActeurCommand,int>
         {
-            private readonly IApplicationDbContext context;
-            public UpdateActeurCommandHandler(IServiceActeur serviceActeur)
+            private readonly IApplicationDbContext _context;
+            public UpdateActeurCommandHandler(IApplicationDbContext context)
             {
-                _serviceActeur = serviceActeur;
+                _context=context;
             }
 
             public async Task<int> Handle(UpdateActeurCommand command, CancellationToken cancellationToken)
             {
-                var entity = new Acteur 
+                var entity = new Acteur
                 {
                     Id = command.Id,
                     Name = command.Name,
                     Roles = command.Roles,
-                    film = command.film
+                    Film = command.film
                 };
-                return await _serviceActeur.UpdateActeur(entity);
+                _context.Acteurs.Update(entity);
+                return await _context.SaveChangesAsync(cancellationToken);
             }
         }
     }
