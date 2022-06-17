@@ -32,32 +32,57 @@ namespace UI.Client
 
         public async Task<IEnumerable<FilmViewModel>> GetallAsync()
         {
-            string url = "Film/Get";
-            var result = await Client.GetStringAsync(url);
+            IEnumerable<FilmViewModel> movies;
 
-            return JsonConvert.DeserializeObject<IEnumerable<FilmViewModel>>(result);
+            string url = "Film/get";
+            var Response = await Client.GetAsync(url);
+            if (!Response.IsSuccessStatusCode)
+            {
+                throw new Exception("cannot retrieve Data");
+            }
+            var content =await Response.Content.ReadAsStringAsync();
+            var task = JsonConvert.DeserializeObject<IEnumerable<FilmViewModel>>(content);
+
+            return task;
         }
         public async Task<FilmViewModel> GetAsync(int id)
         {
-                string url = "Film/Get"+id;
-                var result = await Client.GetStringAsync(url);
-                FilmViewModel model = JsonConvert.DeserializeObject<FilmViewModel>(result);
-                return model;
+            string url = "Film/get";
+            var Response = await Client.GetAsync(url);
+            if (!Response.IsSuccessStatusCode)
+            {
+                throw new Exception("cannot retrieve Data");
+            }
+            var content = await Response.Content.ReadAsStringAsync();
+            var task = JsonConvert.DeserializeObject<FilmViewModel>(content);
+            return task;
         }
 
-        public async void PostAsync(FilmViewModel model)
+        public async Task<FilmViewModel> PostAsync(FilmViewModel model)
         {
-                string url = "Film/Get";
-                string json = JsonConvert.SerializeObject(model);
-                await Client.PostAsJsonAsync(url, json);
+                string url = "Film/get";
+                var json = JsonConvert.SerializeObject(model);
+                var httpResponse =await Client.PostAsJsonAsync(url, json);
+                if (!httpResponse.IsSuccessStatusCode)
+                {
+                    throw new Exception("cannot add the data you asked");
+                }
+                var PostTask = JsonConvert.DeserializeObject<FilmViewModel>(await httpResponse.Content.ReadAsStringAsync());
+                return PostTask;
         }
 
-        public async void  PutAsync(FilmViewModel model, int id)
+        public async Task<FilmViewModel>  PutAsync(FilmViewModel model, int id)
         {
                 string url = "Film/put"+id;
-                string json =JsonConvert.SerializeObject(model);
-                await Client.PutAsJsonAsync(url, json);
-                
+                var json =JsonConvert.SerializeObject(model);
+                var httpResponse =await Client.PutAsJsonAsync(url, json);
+                if (!httpResponse.IsSuccessStatusCode)
+                {
+                    throw new Exception("cannot add the data you asked");
+                }
+                var PutTask =JsonConvert.DeserializeObject<FilmViewModel>(await httpResponse.Content.ReadAsStringAsync());
+                return PutTask;
+
         }
     }
 }

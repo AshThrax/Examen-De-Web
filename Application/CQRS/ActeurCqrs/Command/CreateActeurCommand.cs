@@ -1,4 +1,6 @@
-﻿using Film_api.Model;
+﻿using Application.Common.Interfaces;
+using Domain.Entities;
+using Film_api.Model;
 using Film_api.Service;
 using MediatR;
 using System;
@@ -19,10 +21,10 @@ namespace Film_api.CQRS.ActeurCqrs.Command
 
         public class CreateActeurCommandHandler : IRequestHandler<CreateActeurCommand, Acteur>
         {
-            private readonly IApplicationDbContext context;
-            public CreateActeurCommandHandler(IServiceActeur serviceActeur)
+            private readonly IApplicationDbContext _context;
+            public CreateActeurCommandHandler(IApplicationDbContext context)
             { 
-                _serviceActeur = serviceActeur;
+               _context = context;
             }
 
             public async Task<Acteur> Handle(CreateActeurCommand command, CancellationToken cancellationToken)
@@ -32,7 +34,7 @@ namespace Film_api.CQRS.ActeurCqrs.Command
                    Id = command.Id,
                    Name = command.Name,
                    Roles = command.Roles,
-                   film = command.film,
+                   Film = command.film,
                 };
 
                 return await _serviceActeur.CreateActeur(entity);

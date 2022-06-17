@@ -29,8 +29,7 @@ namespace UI.Controllers
         //controle the create page b
         public async Task<IActionResult> Create()
         {
-           
-
+            return View();
         }
         //manage the data retrieve in the create page
 
