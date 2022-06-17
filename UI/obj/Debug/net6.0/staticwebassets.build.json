@@ -1,23 +1,11 @@
 {
   "Version": 1,
-  "Hash": "TAV0oFbjwCem3D/pKD2MxSs2jz6D8NCH7G/oHbiQWBg=",
+  "Hash": "rihRQZtPn1pumUxQAHct8aeMU87Z01y84KkC2oV2Gyg=",
   "Source": "UI",
   "BasePath": "_content/UI",
   "Mode": "Default",
   "ManifestType": "Build",
-  "ReferencedProjectsConfiguration": [
-    {
-      "Identity": "C:\\Users\\quentin\\source\\repos\\Film\\Examen-De-Web\\Api\\Api.csproj",
-      "Version": 2,
-      "Source": "Api",
-      "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
-      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
-      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier",
-      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
-      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
-      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier"
-    }
-  ],
+  "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [
     {
       "Name": "UI\\wwwroot",
