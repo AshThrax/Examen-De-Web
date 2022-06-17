@@ -2,8 +2,10 @@
 using AutoMapper.QueryableExtensions;
 using AutoMapper;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
+using Film_api.CQRS.FilmCqrs;
 
-namespace Film_api.CQRS.FilmCqrs.Querry
+namespace Application.FilmCqrs.Querry
 {
     public class GetFilmByIdQuery :IRequest<FilmDto>
     {
@@ -21,9 +23,9 @@ namespace Film_api.CQRS.FilmCqrs.Querry
             public async Task<FilmDto> Handle(GetFilmByIdQuery query, CancellationToken cancellationToken)
             {
                 FilmDto film= await _context.Films
-                                    .ProjectTo<Film>(_mapper.ConfigurationProvider)
+                                    .ProjectTo<FilmDto>(_mapper.ConfigurationProvider)
                                     .Where(x =>x.Id ==query.Id)
-                                    .FirstOrDefault(cancellationToken);
+                                    .FirstOrDefaultAsync(cancellationToken);
                 return film;
                
             }

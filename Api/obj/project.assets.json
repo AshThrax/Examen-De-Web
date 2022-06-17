@@ -824,6 +824,54 @@
             "rid": "win"
           }
         }
+      },
+      "Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "AutoMapper": "11.0.1",
+          "AutoMapper.Extensions.Microsoft.DependencyInjection": "11.0.0",
+          "Domain": "1.0.0",
+          "FluentValidation.AspNetCore": "11.0.3",
+          "FluentValidation.DependencyInjectionExtensions": "11.0.3",
+          "MediatR": "10.0.1",
+          "MediatR.Extensions.Microsoft.DependencyInjection": "10.0.1",
+          "Microsoft.EntityFrameworkCore": "6.0.6",
+          "Microsoft.Extensions.Configuration.Abstractions": "6.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Application.dll": {}
+        }
+      },
+      "Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Domain.dll": {}
+        }
+      },
+      "infrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Application": "1.0.0",
+          "Microsoft.EntityFrameworkCore.InMemory": "6.0.6",
+          "Microsoft.EntityFrameworkCore.SqlServer": "6.0.6",
+          "Microsoft.Extensions.Configuration.Abstractions": "6.0.0",
+          "Microsoft.Extensions.Configuration.Binder": "6.0.0"
+        },
+        "compile": {
+          "bin/placeholder/infrastructure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/infrastructure.dll": {}
+        }
       }
     }
   },
@@ -2341,10 +2389,26 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "Application/1.0.0": {
+      "type": "project",
+      "path": "../Application/Application.csproj",
+      "msbuildProject": "../Application/Application.csproj"
+    },
+    "Domain/1.0.0": {
+      "type": "project",
+      "path": "../Domain/Domain.csproj",
+      "msbuildProject": "../Domain/Domain.csproj"
+    },
+    "infrastructure/1.0.0": {
+      "type": "project",
+      "path": "../infrastructure/infrastructure.csproj",
+      "msbuildProject": "../infrastructure/infrastructure.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "Application >= 1.0.0",
       "AutoMapper >= 11.0.1",
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 11.0.0",
       "FluentValidation.AspNetCore >= 11.0.3",
@@ -2359,7 +2423,8 @@
       "Microsoft.Extensions.Configuration.Abstractions >= 6.0.0",
       "Microsoft.Extensions.Configuration.Binder >= 6.0.0",
       "Microsoft.Extensions.DependencyInjection >= 6.0.0",
-      "Swashbuckle.AspNetCore >= 6.2.3"
+      "Swashbuckle.AspNetCore >= 6.2.3",
+      "infrastructure >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -2396,7 +2461,14 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\quentin\\source\\repos\\Film\\Examen-De-Web\\Application\\Application.csproj": {
+              "projectPath": "C:\\Users\\quentin\\source\\repos\\Film\\Examen-De-Web\\Application\\Application.csproj"
+            },
+            "C:\\Users\\quentin\\source\\repos\\Film\\Examen-De-Web\\infrastructure\\infrastructure.csproj": {
+              "projectPath": "C:\\Users\\quentin\\source\\repos\\Film\\Examen-De-Web\\infrastructure\\infrastructure.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -2491,5 +2563,34 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1605",
+      "level": "Error",
+      "message": "Passage à une version antérieure du package détecté : Microsoft.EntityFrameworkCore.SqlServer de 6.0.6 à 6.0.5. Référencez le package directement à partir du projet pour sélectionner une version différente. \r\n Api -> infrastructure -> Microsoft.EntityFrameworkCore.SqlServer (>= 6.0.6) \r\n Api -> Microsoft.EntityFrameworkCore.SqlServer (>= 6.0.5)",
+      "libraryId": "Microsoft.EntityFrameworkCore.SqlServer",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    },
+    {
+      "code": "NU1605",
+      "level": "Error",
+      "message": "Passage à une version antérieure du package détecté : Microsoft.EntityFrameworkCore.InMemory de 6.0.6 à 6.0.5. Référencez le package directement à partir du projet pour sélectionner une version différente. \r\n Api -> infrastructure -> Microsoft.EntityFrameworkCore.InMemory (>= 6.0.6) \r\n Api -> Microsoft.EntityFrameworkCore.InMemory (>= 6.0.5)",
+      "libraryId": "Microsoft.EntityFrameworkCore.InMemory",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    },
+    {
+      "code": "NU1605",
+      "level": "Error",
+      "message": "Passage à une version antérieure du package détecté : Microsoft.EntityFrameworkCore de 6.0.6 à 6.0.5. Référencez le package directement à partir du projet pour sélectionner une version différente. \r\n Api -> Application -> Microsoft.EntityFrameworkCore (>= 6.0.6) \r\n Api -> Microsoft.EntityFrameworkCore (>= 6.0.5)",
+      "libraryId": "Microsoft.EntityFrameworkCore",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
 }

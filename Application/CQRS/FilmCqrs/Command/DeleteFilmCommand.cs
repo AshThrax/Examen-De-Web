@@ -1,6 +1,7 @@
 ﻿using Application.Common.Interfaces;
 using Domain.Entities;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace Film_api.CQRS.FilmCqrs.Command
 {
@@ -25,7 +26,7 @@ namespace Film_api.CQRS.FilmCqrs.Command
 
             public async Task<Unit> Handle(DeleteFilmCommand Command, CancellationToken cancellationToken)
             {
-                var entity = await _context.Films.Where(x => x.Id==Command.Id).FirstaAsync();
+                var entity = await _context.Films.Where(x => x.Id==Command.Id).FirstOrDefaultAsync();
                 if (entity == null)
                     return default;
 

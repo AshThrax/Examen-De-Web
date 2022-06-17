@@ -7,9 +7,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Film_api.CQRS.ActeurCqrs.Query
 {
-    public class GetAllActeurQuery:IRequest<IEnumerable<ActeurDto>>
+    public class GetAllActeurQuery:IRequest<IList<ActeurDto>>
     {
-        public class GetAllActeurQueryHandler:IRequestHandler<GetAllActeurQuery,IEnumerable<ActeurDto>>
+        public class GetAllActeurQueryHandler:IRequestHandler<GetAllActeurQuery,IList<ActeurDto>>
         {
             private readonly IApplicationDbContext _context;
             private readonly IMapper _mapper;
@@ -19,7 +19,7 @@ namespace Film_api.CQRS.ActeurCqrs.Query
                _mapper = mapper;
             }
 
-            public async Task<IEnumerable<ActeurDto>> Handle(GetAllActeurQuery query, CancellationToken cancellationToken)
+            public async Task<IList<ActeurDto>> Handle(GetAllActeurQuery query, CancellationToken cancellationToken)
             {
                 List<ActeurDto> act =await _context.Acteurs
                                                     .ProjectTo<ActeurDto>(_mapper.ConfigurationProvider)

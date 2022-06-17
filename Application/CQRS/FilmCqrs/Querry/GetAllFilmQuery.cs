@@ -4,8 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using Application.CQRS.FilmCqrs;
 using AutoMapper.QueryableExtensions;
+using Film_api.CQRS.FilmCqrs;
 
-namespace Film_api.CQRS.FilmCqrs.Querry
+namespace Application.CQRS.FilmCqrs.Querry
 {
     public class GetAllFilmQuery : IRequest<FilmVm>
     {
