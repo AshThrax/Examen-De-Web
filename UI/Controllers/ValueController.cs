@@ -5,7 +5,7 @@ using System.Text;
 using UI.Models;
 
 namespace UI.Controllers
-{
+{/*
     public class ValueController : Controller
     {
 
@@ -78,5 +78,5 @@ namespace UI.Controllers
                 Client.DefaultRequestHeaders.Authorization= new System.Net.Http.Headers.AuthenticationHeaderValue ("Bearer",accessToken);
             }
         }
-    }
+    }*/
 }

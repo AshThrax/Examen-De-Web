@@ -62,7 +62,9 @@ builder.Services.AddAuthentication(options => {
         }
     };
 });
+//http services
 builder.Services.AddHttpClient<IFilmClient, Filmclient>();
+builder.Services.AddHttpClient<IActeurClient,ActeurClient>();
 builder.Services.AddHttpClient<IOmdbClient,OmdbClient>();
 builder.Services.AddControllersWithViews();
 
