@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Api.Policies;
 using Api;
 using FluentValidation.AspNetCore;
+using System.Reflection;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 var service = builder.Services;
@@ -16,10 +18,36 @@ var domain = configuration["Auth0:Domain"];
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+//swagger
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "Projet Examen",
+        Version = "v1",
+        Description = "Clean architecture build in .net6 set up for Examination",
+        TermsOfService =new Uri("https://example.com/terms"),
+        Contact = new OpenApiContact
+        {
+            Name = "Quentin Courcelles",
+            Email = string.Empty,
+            Url= new Uri("https://github.com/explore"),
+        }, 
+        License= new OpenApiLicense 
+        { 
+            Name="Ephec Licence Maybe",
+            Url=new Uri("https://example.com/license"),
+        }
+    }); 
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    c.IncludeXmlComments(xmlPath);
+});
+
+
 builder.Services.AddDependence(configuration);
 
-
+//auth0 Api authentication
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
