@@ -9,7 +9,8 @@ using Microsoft.AspNetCore.Identity;
 namespace UI.Controllers
 {
     public class AccountController : Controller
-    {   private UserManager<UserProfile> userManager; 
+    {
+      
         public async Task Login(string returnUrl = "/")
         {
             await HttpContext.ChallengeAsync("Auth0", new AuthenticationProperties() { RedirectUri = returnUrl });
@@ -23,15 +24,30 @@ namespace UI.Controllers
             });
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
         }
+        //
+        /// <summary>
+        /// return a profile page only when the user is logged 
+        /// </summary>
+        /// <returns> nothing</returns>
+        [Authorize]
         public IActionResult Profile()
         {
-            return View(new UserProfile()
+           
+            var User = BuildUser();
+            return View(User);                  
+        }
+
+        //create
+        private UserProfile BuildUser() 
+        {
+            var user = new UserProfile()
             {
                 UserName = User.Identity.Name,
                 EmailAddress = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value,
                 ProfileImage = User.Claims.FirstOrDefault(c => c.Type == "picture")?.Value,
-                UserId= User.Claims.FirstOrDefault(c =>c.Type =="User")?.Value
-            });
+                UserId = User.Claims.FirstOrDefault(c => c.Type == "User")?.Value
+            };
+            return user;
         }
     }
 }

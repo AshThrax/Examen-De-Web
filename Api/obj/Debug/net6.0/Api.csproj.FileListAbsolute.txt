@@ -134,3 +134,6 @@ C:\Users\quentin\source\repos\Film\Examen-De-Web\Api\obj\Debug\net6.0\Api.pdb
 C:\Users\quentin\source\repos\Film\Examen-De-Web\Api\obj\Debug\net6.0\Api.genruntimeconfig.cache
 C:\Users\quentin\source\repos\Film\Examen-De-Web\Api\obj\Debug\net6.0\ref\Api.dll
 C:\Users\quentin\source\repos\Film\Examen-De-Web\Api\bin\Debug\net6.0\FluentValidation.AspNetCore.dll
+C:\Users\quentin\source\repos\Film\Examen-De-Web\Api\bin\Debug\net6.0\Microsoft.AspNetCore.Authorization.dll
+C:\Users\quentin\source\repos\Film\Examen-De-Web\Api\bin\Debug\net6.0\Microsoft.AspNetCore.Metadata.dll
+C:\Users\quentin\source\repos\Film\Examen-De-Web\Api\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll

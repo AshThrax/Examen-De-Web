@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using UI.Models.Post;
+using WebApplication2.Models;
 
 namespace UI.Controllers
 {
@@ -37,7 +38,7 @@ namespace UI.Controllers
             };
             return View(model);
         }
-
+        [Authorize]
         public IActionResult Create(int Forumid)
         {
             //note id :forum id
@@ -51,16 +52,14 @@ namespace UI.Controllers
             return View (model);
         }
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> AddPost(NewPost model)
         {
             var Userid =User.Claims.FirstOrDefault(c => c.Type == "User")?.Value;
-            var post = BuildModel(model);
+            UserProfile user = this.User;
+            var post = BuildModel(model,User);
         }
 
-        private object BuildModel(object post)
-        {
-            throw new NotImplementedException();
-        }
 
         private IEnumerable<PostReply> BuildPostReplies(IEnumerable<PostReplies> replies)
         {

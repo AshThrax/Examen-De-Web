@@ -11,6 +11,7 @@
     <PackageReference Include="Auth0.AuthenticationApi" Version="7.16.0" />
     <PackageReference Include="Auth0.ManagementApi" Version="7.16.0" />
     <PackageReference Include="JWT" Version="9.0.3" />
+    <PackageReference Include="MediatR" Version="10.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="6.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.5">
@@ -23,13 +24,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Api\Api.csproj" />
-    <ProjectReference Include="..\ForumBackend\ForumBackend.csproj" />
+    <Folder Include="Abstraction\" />
+    <Folder Include="Service\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Abstraction\" />
-    <Folder Include="Service\" />
+    <ProjectReference Include="..\Application\Application.csproj" />
+    <ProjectReference Include="..\infrastructure\infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
