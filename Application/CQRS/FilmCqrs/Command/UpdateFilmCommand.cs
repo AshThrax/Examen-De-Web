@@ -1,4 +1,6 @@
-﻿using Film_api.Model;
+﻿using Application.Common.Interfaces;
+using Domain.Entities;
+using Film_api.Model;
 using Film_api.Service;
 using MediatR;
 using System;
@@ -20,10 +22,10 @@ namespace Film_api.CQRS.FilmCqrs.Command
 
         public class UpdateFilmCommandHandler :IRequestHandler<UpdateFilmCommand, int>
         {
-            private readonly IServiceFilm _serviceFilm;
-            public UpdateFilmCommandHandler(IServiceFilm serviceFilm)
+            private readonly IApplicationDbContext _context;
+            public UpdateFilmCommandHandler(IApplicationDbContext context)
             {
-                _serviceFilm = serviceFilm;
+                _context = context;
             }
 
             public async Task<int> Handle(UpdateFilmCommand Command, CancellationToken Cancellation)
@@ -37,7 +39,8 @@ namespace Film_api.CQRS.FilmCqrs.Command
                 };
 
 
-                return await _serviceFilm.UpdateFilm(entity);
+                _context.Films.Update(entity);
+                return await _context.SaveChangesAsync();
             }
         }
     }

@@ -18,7 +18,7 @@ namespace Film_api.CQRS.ActeurCqrs.Command
         public Film film { get; set; }
         public class UpdateActeurCommandHandler : IRequestHandler<UpdateActeurCommand,int>
         {
-            private readonly IServiceActeur _serviceActeur;
+            private readonly IApplicationDbContext context;
             public UpdateActeurCommandHandler(IServiceActeur serviceActeur)
             {
                 _serviceActeur = serviceActeur;

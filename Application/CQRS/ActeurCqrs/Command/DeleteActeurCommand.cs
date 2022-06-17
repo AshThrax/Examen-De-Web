@@ -18,7 +18,7 @@ namespace Film_api.CQRS.ActeurCqrs.Command
         public Film film { get; set; }
         public class DeleteActeurCommandHandler : IRequestHandler<DeleteActeurCommand, int>
         {
-            private readonly IServiceActeur _serviceActeur;
+            private readonly IApplicationDbContext context;
             private int defautl;
 
             public DeleteActeurCommandHandler(IServiceActeur serviceActeur)

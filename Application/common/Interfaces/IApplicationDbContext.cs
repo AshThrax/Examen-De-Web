@@ -9,7 +9,8 @@ namespace Application.Common.Interfaces
             DbSet<Acteur> Acteurs { get; set; }
 
             Task<int> SaveChangesAsync(CancellationToken cancellationToken);
-        }
+       
+    }
     
 
 }

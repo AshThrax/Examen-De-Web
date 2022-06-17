@@ -1,4 +1,5 @@
-﻿using Application.Common.Interfaces;
+﻿using Api.Infrastructure.Persistence;
+using Application.Common.Interfaces;
 using Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -10,8 +11,8 @@ namespace infrastructure.Service
 {
     public class FilmService :IFilmService
     {
-        public readonly IApplicationDbContext _context;
-        public ServiceFilm(IApplicationDbContext context)
+        public readonly ApplicationDbContext _context;
+        public FilmService(ApplicationDbContext context)
         {
             _context = context;
         }

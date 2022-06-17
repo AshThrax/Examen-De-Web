@@ -19,6 +19,8 @@ namespace Api.Infrastructure.Persistence
             return base.SaveChangesAsync(cancellationToken);
         }
 
+       
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());

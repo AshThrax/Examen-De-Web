@@ -1,0 +1,5 @@
+C:\Users\quentin\source\repos\Film\Examen-De-Web\infrastructure\obj\Debug\net6.0\infrastructure.csproj.AssemblyReference.cache
+C:\Users\quentin\source\repos\Film\Examen-De-Web\infrastructure\obj\Debug\net6.0\infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\quentin\source\repos\Film\Examen-De-Web\infrastructure\obj\Debug\net6.0\infrastructure.AssemblyInfoInputs.cache
+C:\Users\quentin\source\repos\Film\Examen-De-Web\infrastructure\obj\Debug\net6.0\infrastructure.AssemblyInfo.cs
+C:\Users\quentin\source\repos\Film\Examen-De-Web\infrastructure\obj\Debug\net6.0\infrastructure.csproj.CoreCompileInputs.cache

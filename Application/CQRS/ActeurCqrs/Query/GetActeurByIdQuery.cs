@@ -1,4 +1,5 @@
-﻿using Film_api.Model;
+﻿using Application.Common.Interfaces;
+using Film_api.Model;
 using Film_api.Service;
 using MediatR;
 using System;
@@ -14,7 +15,7 @@ namespace Film_api.CQRS.ActeurCqrs.Query
         public int Id { get; set; }
         public class GetActeurByIdQueryHandler : IRequestHandler<GetActeurByIdQuery, Acteur>
         {
-            private readonly IServiceActeur _serviceActeur;
+            private readonly IApplicationDbContext context;
             public GetActeurByIdQueryHandler( IServiceActeur serviceActeur)
             { 
                 _serviceActeur = serviceActeur;

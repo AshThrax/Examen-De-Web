@@ -1,26 +1,22 @@
-﻿using Film_api.Model;
-using Film_api.Service;
+﻿using Application.Common.Interfaces;
+using AutoMapper;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Film_api.CQRS.ActeurCqrs.Query
 {
-    public class GetAllActeurQuery:IRequest<IEnumerable<Acteur>>
+    public class GetAllActeurQuery:IRequest<IEnumerable<ActeurDto>>
     {
-        public class GetAllActeurQueryHandler:IRequestHandler<GetAllActeurQuery,IEnumerable<Acteur>>
+        public class GetAllActeurQueryHandler:IRequestHandler<GetAllActeurQuery,IEnumerable<ActeurDto>>
         {
-            private readonly IServiceActeur _serviceActeur;
-            public GetAllActeurQueryHandler(IServiceActeur serviceActeur)
+            private readonly IApplicationDbContext _context;
+            private readonly IMapper _mapper;
+            public GetAllActeurQueryHandler(IApplicationDbContext context,IMapper mapper)
             {
-                _serviceActeur = serviceActeur;
-
+               _context = context;
+               _mapper = mapper;
             }
 
-            public async Task<IEnumerable<Acteur>> Handle(GetAllActeurQuery query, CancellationToken cancellationToken)
+            public async Task<IEnumerable<ActeurDto>> Handle(GetAllActeurQuery query, CancellationToken cancellationToken)
             {
                 return await _serviceActeur.GetAllActeur();
             }

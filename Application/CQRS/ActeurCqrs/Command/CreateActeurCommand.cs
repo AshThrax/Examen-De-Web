@@ -19,7 +19,7 @@ namespace Film_api.CQRS.ActeurCqrs.Command
 
         public class CreateActeurCommandHandler : IRequestHandler<CreateActeurCommand, Acteur>
         {
-            private readonly IServiceActeur _serviceActeur;
+            private readonly IApplicationDbContext context;
             public CreateActeurCommandHandler(IServiceActeur serviceActeur)
             { 
                 _serviceActeur = serviceActeur;

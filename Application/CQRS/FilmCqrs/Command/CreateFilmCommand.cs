@@ -1,6 +1,8 @@
 ﻿using Film_api.Service;
 using Film_api.Model;
 using MediatR;
+using Domain.Entities;
+using Application.Common.Interfaces;
 
 namespace Film_api.CQRS.FilmCqrs.Command
 {
@@ -14,11 +16,11 @@ namespace Film_api.CQRS.FilmCqrs.Command
 
         public class CreateFilmCommandHandler : IRequestHandler< CreateFilmCommand, Film>
         {
-            private readonly IServiceFilm _filmservice;
-            public CreateFilmCommandHandler (IServiceFilm filmservice)
+            private readonly IApplicationDbContext _context;
+            public CreateFilmCommandHandler(IApplicationDbContext context)
             {
-                _filmservice = filmservice;
-            }
+                _context = context
+ ;            }
             public async Task<Film> Handle(CreateFilmCommand command, CancellationToken cancellationToken)
             {
                 var entity = new Film
@@ -28,7 +30,9 @@ namespace Film_api.CQRS.FilmCqrs.Command
                     Description = command.Description,
                 };
 
-                return await _filmservice.Createfilm(entity);
+                _context.Films.Add(entity);
+                await _context.SaveChangesAsync();
+                return entity;
 
             }
         }

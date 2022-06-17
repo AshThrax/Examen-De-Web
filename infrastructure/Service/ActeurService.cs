@@ -12,7 +12,7 @@ namespace infrastructure.Service
     {
         private readonly ApplicationDbContext _context;
 
-        public ServiceActeur(ApplicationDbContext context)
+        public Acteur(ApplicationDbContext context)
         {
             _context = context;
         }

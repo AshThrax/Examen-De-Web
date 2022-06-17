@@ -1,15 +1,10 @@
-﻿using Film_api.Model;
-using Film_api.Service;
+﻿using Application.Common.Interfaces;
+using Domain.Entities;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Film_api.CQRS.FilmCqrs.Command
 {
-   public class DeleteFilmCommand:IRequest<int>
+    public class DeleteFilmCommand:IRequest<int>
     {
         public int Id { get; set; }
         public string Titre { get; set; }
@@ -22,19 +17,20 @@ namespace Film_api.CQRS.FilmCqrs.Command
 
         public class DeleteFilmCommandHandler : IRequestHandler<DeleteFilmCommand, int>
         {
-            private readonly IServiceFilm _serviceFilm;
-            public DeleteFilmCommandHandler(IServiceFilm serviceFilm)
+            private readonly IApplicationDbContext _context;
+            public DeleteFilmCommandHandler(IApplicationDbContext context)
             { 
-              _serviceFilm = serviceFilm;
+                _context = context;
             }
 
             public async Task<int> Handle(DeleteFilmCommand Command, CancellationToken cancellationToken)
             {
-                var entity = await _serviceFilm.GetFilmByid(Command.Id);
+                var entity = await _context.Films.Where(x => x.Id==Command.Id).First();
                 if (entity == null)
                     return default;
 
-                return await _serviceFilm.Deletefilm(entity);
+                _context.Films.Remove(entity);
+                return await _context.SaveChangesAsync();
             }
         }
     }
