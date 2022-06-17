@@ -11,6 +11,7 @@ namespace Film_api.CQRS.FilmCqrs.Command
         public DateTime Date { get; set; }
 
         public string Description { get; set; }
+        public string Genre { get; set; }
 
         public class CreateFilmCommandHandler : IRequestHandler< CreateFilmCommand, int>
         {
@@ -26,6 +27,7 @@ namespace Film_api.CQRS.FilmCqrs.Command
                     Titre = command.Titre,
                     Date = command.Date,
                     Description = command.Description,
+                    Genre = command.Genre
                 };
 
                 _context.Films.Add(entity);

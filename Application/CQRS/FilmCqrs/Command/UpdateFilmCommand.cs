@@ -13,6 +13,8 @@ namespace Film_api.CQRS.FilmCqrs.Command
 
         public string Description { get; set; }
 
+        public string Genre { get; set; }
+
         public class UpdateFilmCommandHandler :IRequestHandler<UpdateFilmCommand>
         {
             private readonly IApplicationDbContext _context;
@@ -28,7 +30,8 @@ namespace Film_api.CQRS.FilmCqrs.Command
                     Id = Command.Id,
                     Titre = Command.Titre,
                     Date = Command.Date,
-                    Description = Command.Description
+                    Description = Command.Description,
+                    Genre=Command.Genre
                 };
 
 

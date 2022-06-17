@@ -1,5 +1,4 @@
-﻿using Film_api.CQRS.FilmCqrs.Command;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using UI.Client;
 using UI.Models;
 

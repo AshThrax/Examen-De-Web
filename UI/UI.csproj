@@ -28,9 +28,4 @@
     <Folder Include="Service\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Application\Application.csproj" />
-    <ProjectReference Include="..\infrastructure\infrastructure.csproj" />
-  </ItemGroup>
-
 </Project>

@@ -1,6 +1,4 @@
-﻿using Api.Domain.Entities;
-
-namespace UI.Models
+﻿namespace UI.Models
 {
     public class ActeurViewModel
     {

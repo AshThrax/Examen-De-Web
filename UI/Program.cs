@@ -2,8 +2,6 @@ using Client.Omdb_Client;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
-using Application;
-using infrastructure;
 using UI.Client;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,8 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 ConfigurationManager configuration=builder.Configuration;
-builder.Services.AddApplication();
-builder.Services.AddInfrastructure(configuration);
+
 
 //authenticatepart
 builder.Services.AddAuthentication(options => {

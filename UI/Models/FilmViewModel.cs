@@ -4,11 +4,9 @@
     {
         public int? Id { get; set; }
 
-        public string? Title { get; set; }
+        public string? Titre{ get; set; }
         public DateTime? Date { get; set; }
-        public string? Genre { get; set; }
-
-        public string? Producer { get; set; }
+        public string genre { get; set; }
         public string? Description { get; set; }
 
         public ICollection<ActeurViewModel>? Acteurs { get; set; }

@@ -16,6 +16,8 @@ namespace Domain.Entities
 
         public string Description { get; set; }
 
+        public string Genre { get; set; }
+
         public ICollection<Acteur> Acteurs {get;set;}
 
         public Film() 
