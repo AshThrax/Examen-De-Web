@@ -4,6 +4,8 @@ using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
 using Application;
 using infrastructure;
+using UI.Client;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -60,6 +62,7 @@ builder.Services.AddAuthentication(options => {
         }
     };
 });
+builder.Services.AddHttpClient<IFilmClient, Filmclient>();
 builder.Services.AddHttpClient<IOmdbClient,OmdbClient>();
 builder.Services.AddControllersWithViews();
 

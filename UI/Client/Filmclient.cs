@@ -4,29 +4,30 @@ using UI.Models;
 
 namespace UI.Client
 {
-    public interface IMyApiClient
+    public interface IFilmClient
     {
         Task<IEnumerable<FilmViewModel>> GetallAsync();
         Task<FilmViewModel> GetAsync(int id);
-        Task<int> PostAsync (FilmViewModel model);
-        Task<int> PutAsync (FilmViewModel model, int id);
-        Task<int> DeleteAsync (int id);
+        void PostAsync (FilmViewModel model);
+        void PutAsync (FilmViewModel model, int id);
+        void DeleteAsync (int id);
 
     }
-    public class MyApiClient : IMyApiClient
+    public class Filmclient : IFilmClient
     {
         private readonly HttpClient Client;
 
-        public MyApiClient(HttpClient client)
+        public Filmclient(HttpClient client)
         {
             client.BaseAddress = new Uri("https://localhost:7299/api");
             Client = client;
         }
 
-        public async Task<int> DeleteAsync(int id)
+        public async void DeleteAsync(int id)
         {
             string url = "Film/delete"+id;
             await Client.DeleteAsync(url);
+           
         }
 
         public async Task<IEnumerable<FilmViewModel>> GetallAsync()
@@ -44,18 +45,18 @@ namespace UI.Client
                 return model;
         }
 
-        public async Task<int> PostAsync(FilmViewModel model)
+        public async void PostAsync(FilmViewModel model)
         {
                 string url = "Film/Get";
                 string json = JsonConvert.SerializeObject(model);
                 await Client.PostAsJsonAsync(url, json);
         }
 
-        public async Task<int> PutAsync(FilmViewModel model, int id)
+        public async void  PutAsync(FilmViewModel model, int id)
         {
                 string url = "Film/put"+id;
                 string json =JsonConvert.SerializeObject(model);
-             await Client.PutAsJsonAsync(url, json);
+                await Client.PutAsJsonAsync(url, json);
                 
         }
     }

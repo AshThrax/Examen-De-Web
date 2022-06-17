@@ -13,6 +13,7 @@ namespace Api.Controllers
     {
 
         [HttpGet]
+        [Route("")]
         [Authorize(Roles ="Admin,Owner,User,guest")]
         public async Task<ActionResult<FilmVm>> Get()
         {
