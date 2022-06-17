@@ -8,7 +8,12 @@ using System.Threading.Tasks;
 
 namespace Application.CQRS.ActeurCqrs.Command
 {
-    public class CreateacteurValidator :AbstractValidator<CreateActeurCommand>
+    public class CreateacteurValidator : AbstractValidator<CreateActeurCommand>
     {
+        public CreateacteurValidator()
+        {
+            RuleFor(c => c.Name).NotEmpty();
+            RuleFor(c =>c.film).NotEmpty();
+        }
     }
 }

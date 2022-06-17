@@ -26,8 +26,11 @@ namespace UI.Controllers
 
         public IActionResult Delete([FromBody] int id) 
         {
-            acteurClient( id);
-        }
+            acteurClient.DeleteAsync( id);
 
+            return RedirectToAction("Index", "Film");
+        }
     }
-}
+
+ }
+
