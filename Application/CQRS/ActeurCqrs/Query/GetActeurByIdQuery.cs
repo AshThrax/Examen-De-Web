@@ -25,6 +25,6 @@ namespace Film_api.CQRS.ActeurCqrs.Query
                 return await _context.Acteurs.FirstOrDefaultAsync(x => x.Id == query.Id);
             }
         }
-        }
     }
 }
+
