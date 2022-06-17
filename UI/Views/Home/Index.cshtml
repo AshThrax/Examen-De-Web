@@ -3,6 +3,21 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1>Bienvenue sur CineMania</h1>
+    <h2>le site internet ou vous pouvez concevoir votre film</h2>
+</div>
+<div class="row">
+
+    <dic class="col">
+        <a asp-Controller="Film" asp-action="Index" class="btn btn-dark"> Liste des film</a>
+    </dic>
+    
+    @if (User.Identity.IsAuthenticated)
+    {
+       <div>
+            <a asp-Controller="Film" asp-action="Index" class="btn btn-dark"> Creer un film</a>
+       </div>
+        
+    }
+   
 </div>

@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using Microsoft.EntityFrameworkCore;
-using Api.Domain.Entities;
-using Application.Common.Interfaces.Application.Common.Interfaces;
+using Application.Common.Interfaces;
+using Domain.Entities;
 
 namespace Api.Infrastructure.Persistence
 {
@@ -12,8 +12,8 @@ namespace Api.Infrastructure.Persistence
         }
 
 
-        public DbSet<Film> Film { get; set; }
-        public DbSet<Acteur> Acteur { get; set; }
+        public DbSet<Film> Films { get; set; }
+        public DbSet<Acteur> Acteurs { get; set; }
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
             return base.SaveChangesAsync(cancellationToken);

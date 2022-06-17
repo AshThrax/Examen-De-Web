@@ -7,11 +7,14 @@ using Api;
 using FluentValidation.AspNetCore;
 using System.Reflection;
 using Microsoft.OpenApi.Models;
+using infrastructure;
+using Application;
 
 var builder = WebApplication.CreateBuilder(args);
 var service = builder.Services;
 ConfigurationManager configuration = builder.Configuration;
-
+builder.Services.AddApplication();
+builder.Services.AddInfrastructure(configuration);
 
 // Add services to the container.
 var domain = configuration["Auth0:Domain"];
@@ -43,9 +46,6 @@ builder.Services.AddSwaggerGen(c =>
     var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
     c.IncludeXmlComments(xmlPath);
 });
-
-
-builder.Services.AddDependence(configuration);
 
 //auth0 Api authentication
 builder.Services.AddAuthentication(options =>
@@ -81,7 +81,7 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI( c => c.SwaggerEndpoint("/swagger/v1/swagger.json","Project Examen"));
 }
 
 app.UseHttpsRedirection();

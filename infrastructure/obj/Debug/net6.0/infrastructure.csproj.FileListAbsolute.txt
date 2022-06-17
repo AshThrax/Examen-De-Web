@@ -1,8 +1,3 @@
-C:\Users\quentin\source\repos\Film\Examen-De-Web\infrastructure\obj\Debug\net6.0\infrastructure.csproj.AssemblyReference.cache
-C:\Users\quentin\source\repos\Film\Examen-De-Web\infrastructure\obj\Debug\net6.0\infrastructure.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\quentin\source\repos\Film\Examen-De-Web\infrastructure\obj\Debug\net6.0\infrastructure.AssemblyInfoInputs.cache
-C:\Users\quentin\source\repos\Film\Examen-De-Web\infrastructure\obj\Debug\net6.0\infrastructure.AssemblyInfo.cs
-C:\Users\quentin\source\repos\Film\Examen-De-Web\infrastructure\obj\Debug\net6.0\infrastructure.csproj.CoreCompileInputs.cache
 C:\Users\quentin\source\repos\Film\Examen-De-Web\infrastructure\bin\Debug\net6.0\infrastructure.deps.json
 C:\Users\quentin\source\repos\Film\Examen-De-Web\infrastructure\bin\Debug\net6.0\infrastructure.dll
 C:\Users\quentin\source\repos\Film\Examen-De-Web\infrastructure\bin\Debug\net6.0\infrastructure.pdb
@@ -10,6 +5,11 @@ C:\Users\quentin\source\repos\Film\Examen-De-Web\infrastructure\bin\Debug\net6.0
 C:\Users\quentin\source\repos\Film\Examen-De-Web\infrastructure\bin\Debug\net6.0\Domain.dll
 C:\Users\quentin\source\repos\Film\Examen-De-Web\infrastructure\bin\Debug\net6.0\Application.pdb
 C:\Users\quentin\source\repos\Film\Examen-De-Web\infrastructure\bin\Debug\net6.0\Domain.pdb
+C:\Users\quentin\source\repos\Film\Examen-De-Web\infrastructure\obj\Debug\net6.0\infrastructure.csproj.AssemblyReference.cache
+C:\Users\quentin\source\repos\Film\Examen-De-Web\infrastructure\obj\Debug\net6.0\infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\quentin\source\repos\Film\Examen-De-Web\infrastructure\obj\Debug\net6.0\infrastructure.AssemblyInfoInputs.cache
+C:\Users\quentin\source\repos\Film\Examen-De-Web\infrastructure\obj\Debug\net6.0\infrastructure.AssemblyInfo.cs
+C:\Users\quentin\source\repos\Film\Examen-De-Web\infrastructure\obj\Debug\net6.0\infrastructure.csproj.CoreCompileInputs.cache
 C:\Users\quentin\source\repos\Film\Examen-De-Web\infrastructure\obj\Debug\net6.0\infrastructure.csproj.CopyComplete
 C:\Users\quentin\source\repos\Film\Examen-De-Web\infrastructure\obj\Debug\net6.0\infrastructure.dll
 C:\Users\quentin\source\repos\Film\Examen-De-Web\infrastructure\obj\Debug\net6.0\refint\infrastructure.dll
