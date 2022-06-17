@@ -35,7 +35,7 @@ namespace Api.Controllers
         [Authorize(Roles = "Admin,Owner")]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<ActionResult> Update([FromForm] string id, UpdateFilmCommand command)
+        public async Task<ActionResult> Update([FromForm] int id, UpdateFilmCommand command)
         {
             if (id != command.Id)
             {

@@ -9,12 +9,12 @@ using ValidationException = Application.Common.Exceptions.ValidationException;
 
 namespace Application.Common.Behaviours
 {
-    public  class ValidatorBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest,TResponse>
+    public  class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest,TResponse>
         where TRequest : IRequest<TResponse>
     {
         private readonly IEnumerable<IValidator<TRequest>> _Validator;
 
-        public ValidatorBehavior(IEnumerable<IValidator<TRequest>> validator)
+        public ValidationBehavior(IEnumerable<IValidator<TRequest>> validator)
         {
             _Validator = validator;
         }

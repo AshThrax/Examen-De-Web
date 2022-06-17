@@ -4,7 +4,7 @@ using Application.Common.Interfaces;
 
 namespace Film_api.CQRS.FilmCqrs.Command
 {
-    public class CreateFilmCommand : IRequest<Film>
+    public class CreateFilmCommand : IRequest<int>
     {
         public string Titre { get; set; }
 
@@ -12,14 +12,14 @@ namespace Film_api.CQRS.FilmCqrs.Command
 
         public string Description { get; set; }
 
-        public class CreateFilmCommandHandler : IRequestHandler< CreateFilmCommand, Film>
+        public class CreateFilmCommandHandler : IRequestHandler< CreateFilmCommand, int>
         {
             private readonly IApplicationDbContext _context;
             public CreateFilmCommandHandler(IApplicationDbContext context)
             {
                 _context = context
  ;            }
-            public async Task<Film> Handle(CreateFilmCommand command, CancellationToken cancellationToken)
+            public async Task<int> Handle(CreateFilmCommand command, CancellationToken cancellationToken)
             {
                 var entity = new Film
                 {
@@ -30,7 +30,7 @@ namespace Film_api.CQRS.FilmCqrs.Command
 
                 _context.Films.Add(entity);
                 await _context.SaveChangesAsync(cancellationToken);
-                return entity;
+                return entity.Id;
 
             }
         }

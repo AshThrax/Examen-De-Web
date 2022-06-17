@@ -6,11 +6,11 @@ namespace UI.Client
 {
     public interface IActeurClient
     {
-        Task<IEnumerable<FilmViewModel>> GetallAsync();
+        Task<IEnumerable<ActeurViewModel>> GetallAsync();
         Task<ActeurViewModel> GetAsync(int id);
         Task<Unit> PostAsync(ActeurViewModel model);
         Task<Unit> PutAsync(ActeurViewModel model, int id);
-        void DeleteAsync(int id);
+        Task<Unit> DeleteAsync(int id);
 
     }
     public class ActeurClient : IActeurClient
@@ -58,7 +58,7 @@ namespace UI.Client
             return task;
         }
 
-        public async Task<ActeurViewModel> PostAsync(ActeurViewModel model)
+        public async Task<Unit> PostAsync(ActeurViewModel model)
         {
             string url = "Film/get";
             var json = JsonConvert.SerializeObject(model);

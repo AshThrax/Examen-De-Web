@@ -21,7 +21,7 @@ namespace Film_api.CQRS.ActeurCqrs.Query
 
             public async Task<IList<ActeurDto>> Handle(GetAllActeurQuery query, CancellationToken cancellationToken)
             {
-                List<ActeurDto> act =await _context.Acteurs
+                IList<ActeurDto> act =await _context.Acteurs
                                                     .ProjectTo<ActeurDto>(_mapper.ConfigurationProvider)
                                                     .ToListAsync();
                 return act;
