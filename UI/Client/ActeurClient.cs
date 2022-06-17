@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using MediatR;
+using Newtonsoft.Json;
 using UI.Models;
 
 namespace UI.Client
@@ -7,8 +8,8 @@ namespace UI.Client
     {
         Task<IEnumerable<FilmViewModel>> GetallAsync();
         Task<ActeurViewModel> GetAsync(int id);
-        Task<ActeurViewModel> PostAsync(ActeurViewModel model);
-        Task<ActeurViewModel> PutAsync(ActeurViewModel model, int id);
+        Task<Unit> PostAsync(ActeurViewModel model);
+        Task<Unit> PutAsync(ActeurViewModel model, int id);
         void DeleteAsync(int id);
 
     }
@@ -22,11 +23,11 @@ namespace UI.Client
             Client = client;
         }
 
-        public async void DeleteAsync(int id)
+        public async Task<Unit> DeleteAsync(int id)
         {
             string url = "Film/delete" + id;
             await Client.DeleteAsync(url);
-
+            return Unit.Value;
         }
 
         public async Task<IEnumerable<ActeurViewModel>> GetallAsync()
@@ -67,10 +68,10 @@ namespace UI.Client
                 throw new Exception("cannot add the data you asked");
             }
             var PostTask = JsonConvert.DeserializeObject<ActeurViewModel>(await httpResponse.Content.ReadAsStringAsync());
-            return PostTask;
+            return Unit.Value;
         }
 
-        public async Task<ActeurViewModel> PutAsync(ActeurViewModel model, int id)
+        public async Task<Unit> PutAsync(ActeurViewModel model, int id)
         {
             string url = "Film/put" + id;
             var json = JsonConvert.SerializeObject(model);
@@ -79,8 +80,8 @@ namespace UI.Client
             {
                 throw new Exception("cannot add the data you asked");
             }
-            var PutTask = JsonConvert.DeserializeObject<ActeurViewModel>(await httpResponse.Content.ReadAsStringAsync());
-            return PutTask;
+            
+            return Unit.Value;
 
         }
     }
