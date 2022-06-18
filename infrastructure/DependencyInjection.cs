@@ -1,5 +1,6 @@
 ﻿using Api.Infrastructure.Persistence;
 using Application.Common.Interfaces;
+using infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,6 +25,7 @@ namespace infrastructure
             }
 
             services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
+            services.AddTransient<SeedDataBase>();
             return services;
         }
     }

@@ -9,19 +9,24 @@ using System.Threading.Tasks;
 
 namespace infrastructure.Persistence
 {
-    public static class SeedDataBase
+    public  class SeedDataBase
     {
-        public static void Initialize(IServiceProvider serviceProvider)
-        {
-            using var context = new ApplicationDbContext(serviceProvider.GetRequiredService<DbContextOptions<ApplicationDbContext>>());
+        private readonly ApplicationDbContext context;
 
-            if (context.Films.Any())
-            {
-                return;
+
+            public SeedDataBase(ApplicationDbContext context)
+            { 
+                context = context ?? throw new ArgumentNullException(nameof(context));
             }
-            context.Films.AddRange(
-                new Domain.Entities.Film
-                {
+
+        public void Seed() {
+
+            if (context.Films.Any()) 
+            { 
+                var movie = new List<Domain.Entities.Film>
+                { 
+                    new Domain.Entities.Film
+                    {
                     Id=1,
                     Titre="the Man",
                     Description="L'histoire d'un homme qui réussi a surpasser ses peurs",
@@ -37,7 +42,7 @@ namespace infrastructure.Persistence
                      Date = DateTime.Now,
                      Genre = "Horreur"
                  },
-                  new Domain.Entities.Film 
+                  new Domain.Entities.Film
                   {
                       Id = 1,
                       Titre = "Die hard 12",
@@ -45,16 +50,20 @@ namespace infrastructure.Persistence
                       Date = DateTime.Now,
                       Genre = "Drame"
                   },
-                   new Domain.Entities.Film 
+                   new Domain.Entities.Film
                    {
                        Id = 1,
                        Titre = "Rambo 8",
                        Description = "le gouvernement cherche le lieutenant john rambo pour une dernière mission a Wuhan y suvrira t'il?",
                        Date = DateTime.Now,
                        Genre = "Drame"
-                   }
-                );
-            context.SaveChanges();
+                   } 
+                };
+
+                context.Films.AddRange(movie);
+                context.SaveChanges();
+            }
+           
         }
     }
 }

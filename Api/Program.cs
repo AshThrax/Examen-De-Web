@@ -9,13 +9,14 @@ using System.Reflection;
 using Microsoft.OpenApi.Models;
 using infrastructure;
 using Application;
+using infrastructure.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 var service = builder.Services;
 ConfigurationManager configuration = builder.Configuration;
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(configuration);
-
+//seed database porcess
 // Add services to the container.
 var domain = configuration["Auth0:Domain"];
 builder.Services.AddControllers();
@@ -74,9 +75,20 @@ builder.Services.AddMvc(options =>
     options.Filters.Add(new ProducesResponseTypeAttribute(StatusCodes.Status401Unauthorized));
     options.ReturnHttpNotAcceptable = true;
 }).AddFluentValidation();
+//seed database
 
 var app = builder.Build();
-
+if (args.Length == 1 && args[0].ToLower() == "seeddata")
+    SeedData(app);
+void SeedData(IHost app)
+{
+    var scopedFactory = app.Services.GetService<IServiceScopeFactory>();
+    using (var scope = scopedFactory.CreateScope())
+    {
+        var service = scope.ServiceProvider.GetService<SeedDataBase>();
+        service.Seed();
+    }
+}
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
