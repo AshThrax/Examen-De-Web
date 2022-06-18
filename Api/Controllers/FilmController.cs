@@ -1,5 +1,6 @@
 ﻿using Application.CQRS.FilmCqrs;
 using Application.CQRS.FilmCqrs.Querry;
+using Film_api.CQRS.FilmCqrs;
 using Film_api.CQRS.FilmCqrs.Command;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -13,20 +14,19 @@ namespace Api.Controllers
     {
 
         [HttpGet]
-      
         [Authorize(Roles ="Admin,Owner,User,guest")]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<ActionResult<FilmVm>> Get()
         {
 
-            return await Mediator.Send(new GetAllFilmQuery()); 
+            return await Mediator.Send(new GetAllFilmQuery() ); 
         }
         //--------Create-----------------
 
         [HttpPost]
         [Authorize(Roles = "Admin,Owner,User")]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        public async Task<ActionResult<int>> Create([FromForm] CreateFilmCommand command)
+        public async Task<ActionResult<int>> Create( CreateFilmCommand command)
         {
             return await Mediator.Send(command);
         }
@@ -35,7 +35,7 @@ namespace Api.Controllers
         [Authorize(Roles = "Admin,Owner")]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<ActionResult> Update([FromForm] int id, UpdateFilmCommand command)
+        public async Task<ActionResult> Update( int id, UpdateFilmCommand command)
         {
             if (id != command.Id)
             {

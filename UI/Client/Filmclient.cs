@@ -6,7 +6,7 @@ namespace UI.Client
 {
     public interface IFilmClient
     {
-        Task<IEnumerable<FilmViewModel>> GetallAsync();
+        Task<IList<FilmViewModel>> GetallAsync();
         Task<FilmViewModel> GetAsync(int id);
         Task<FilmViewModel> PostAsync (FilmViewModel model);
         Task<FilmViewModel> PutAsync (FilmViewModel model, int id);
@@ -16,39 +16,39 @@ namespace UI.Client
     public class Filmclient :  IFilmClient
     {
         private readonly HttpClient Client;
-
+        private const string address = "https://localhost:7299/api/Film/";
         public Filmclient(HttpClient client)
         {
-            client.BaseAddress = new Uri("https://localhost:7299/api");
+           
             Client = client;
         }
 
         public async void DeleteAsync(int id)
         {
-            string url = "Film/delete"+id;
-            await Client.DeleteAsync(url);
+            var url = id;
+            await Client.DeleteAsync($"{id}");
            
         }
 
-        public async Task<IEnumerable<FilmViewModel>> GetallAsync()
+        public async Task<IList<FilmViewModel>> GetallAsync()
         {
-            IEnumerable<FilmViewModel> movies;
+            
 
-            string url = "Film/get";
-            var Response = await Client.GetAsync(url);
+            string url = "get";
+            var Response = await Client.GetAsync(address);
             if (!Response.IsSuccessStatusCode)
             {
                 throw new Exception("cannot retrieve Data");
             }
             var content =await Response.Content.ReadAsStringAsync();
-            var task = JsonConvert.DeserializeObject<IEnumerable<FilmViewModel>>(content);
+            var task = JsonConvert.DeserializeObject<IList<FilmViewModel>>(content);
 
             return task;
         }
         public async Task<FilmViewModel> GetAsync(int id)
         {
             string url = "Film/get";
-            var Response = await Client.GetAsync(url);
+            var Response = await Client.GetAsync($"{address}{id}");
             if (!Response.IsSuccessStatusCode)
             {
                 throw new Exception("cannot retrieve Data");
@@ -62,7 +62,7 @@ namespace UI.Client
         {
                 string url = "Film/get";
                 var json = JsonConvert.SerializeObject(model);
-                var httpResponse =await Client.PostAsJsonAsync(url, json);
+                var httpResponse =await Client.PostAsJsonAsync(address, json);
                 if (!httpResponse.IsSuccessStatusCode)
                 {
                     throw new Exception("cannot add the data you asked");
@@ -75,7 +75,7 @@ namespace UI.Client
         {
                 string url = "Film/put"+id;
                 var json =JsonConvert.SerializeObject(model);
-                var httpResponse =await Client.PutAsJsonAsync(url, json);
+                var httpResponse =await Client.PutAsJsonAsync($"{address}{id}", json);
                 if (!httpResponse.IsSuccessStatusCode)
                 {
                     throw new Exception("cannot add the data you asked");

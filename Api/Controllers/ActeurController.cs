@@ -15,10 +15,10 @@ namespace Api.Controllers
 
         [HttpGet]
 
-        [Authorize(Roles = "Admin,Owner,User,guest")]
+        
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        public async Task<ActionResult<List<ActeurDto>>> Get()
+        public async Task<List<ActeurDto>> Get()
         {
 
             return await Mediator.Send( new GetAllActeurQuery());

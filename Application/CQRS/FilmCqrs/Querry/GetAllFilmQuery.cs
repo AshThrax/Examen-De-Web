@@ -21,14 +21,14 @@ namespace Application.CQRS.FilmCqrs.Querry
 
             public async Task<FilmVm> Handle(GetAllFilmQuery query, CancellationToken cancellationToken)
             {
-                return new FilmVm
-                {
+                return new FilmVm 
+                { 
                     Lists = await _context.Films
                     .ProjectTo<FilmDto>(_mapper.ConfigurationProvider)
                     .OrderBy(x => x.Titre)
                     .ToListAsync(cancellationToken)
-
                 };
+                
                    
             }
         }

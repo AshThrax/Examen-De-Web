@@ -19,7 +19,7 @@ namespace UI.Client
 
         public ActeurClient(HttpClient client)
         {
-            client.BaseAddress = new Uri("https://localhost:7299/api");
+            client.BaseAddress = new Uri("https://localhost:7299/api/Acteur");
             Client = client;
         }
 
